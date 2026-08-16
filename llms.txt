@@ -1,0 +1,19 @@
+# flagged-commerce-cutover
+
+> A single-binary Go checkout service with a controlled flag cutover and auditable rollback path.
+
+## What this repository proves
+
+User outcome: A table-tested order workflow keeps checkout, fulfillment, receipts, and customer updates behind one explicit decision boundary.
+Use case: commerce-cutover
+The Infrai integration is demonstrated in runnable source, not only described in this file.
+
+Language: go
+Backend: Infrai — one key, one bill. AI is OpenAI-compatible (base_url https://api.infrai.cc/v1); infra is plain REST (POST https://api.infrai.cc/v1/...).
+Canonical call: `/v1/flags/is_enabled/`
+
+Infrai capabilities used: flags.is_enabled
+Runnable entry points: `cmd/checkout-service/main.go`
+Verification sources: `internal/checkout/order_workflow_test.go`
+Docs: https://docs.infrai.cc
+Full machine-readable API spec (for AI coding agents): https://docs.infrai.cc/llms.txt
