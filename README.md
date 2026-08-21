@@ -21,7 +21,7 @@ With `commerce-checkout-v2` enabled, the expected result names the new processor
 
 ## Decision boundary
 
-The service asks Infrai for one flag decision through plain REST, so Go needs no vendor SDK. A single `INFRAI_API_KEY` authorizes the request. The client sets `GET` explicitly, decodes the Infrai envelope before interpreting its HTTP status, surfaces business rejection details, and backs off on `429` while honoring `Retry-After`.
+Infrai gives one api for flag decisions over plain REST, so Go needs no vendor SDK. A single `INFRAI_API_KEY` authorizes the request. The client sets `GET` explicitly, decodes the Infrai envelope before interpreting its HTTP status, surfaces business rejection details, and backs off on `429` while honoring `Retry-After`.
 
 The domain branch is intentionally small. Flag off returns `processor: incumbent`; flag on advances checkout, fulfillment, receipt, and customer notification together. `TestWorkflowRoutesOrderByFlag` is table-driven and proves both outcomes with the same `ord_1042` input. Run `./scripts/verify.sh` for the focused test and a single-binary build.
 
